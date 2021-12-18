@@ -75,3 +75,26 @@ the output for the above find command would be
 /opt/apache-tomcat-8.5.73/webapps/host-manager/META-INF/context.xml
 /opt/apache-tomcat-8.5.73/webapps/manager/META-INF/context.xml
 ```
+
+out of these files we modify the 
+```
+/opt/apache-tomcat-8.5.73/webapps/host-manager/META-INF/context.xml
+/opt/apache-tomcat-8.5.73/webapps/manager/META-INF/context.xml
+```
+comment out the areas of the restriction of the Ip address
+
+and then add the following users in the /opt/tomcat_folder/conf/tomcat-users.xml
+```
+ <role rolename="manager-gui"/>
+ <role rolename="manager-script"/>
+ <role rolename="manager-jmx"/>
+ <role rolename="manager-status"/>
+ <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
+ <user username="deployer" password="deployer" roles="manager-script"/>
+ <user username="tomcat" password="s3cret" roles="manager-gui"/>
+```
+
+
+After the configuration changes are made we need to restart tomcat services. 
+But this time it asks when accesse from the frontend 
+
